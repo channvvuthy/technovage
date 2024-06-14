@@ -1,0 +1,40 @@
+extend type Query {
+    customers: [Customer!]! @guard @paginate
+    customer(id: ID @eq): Customer @guard @find
+    countCustomers: Int!
+    searchCustomers(query: String!): [Customer!]!
+}
+
+extend type Mutation {
+    createCustomer(
+        name: String! @rules(apply: ["unique:customers"])
+        phone_number: String! @rules(apply: ["required"])
+        registration_date: String
+        address: String
+        score: Int @rules(apply: ["integer"])
+    ): Customer! @create
+
+    updateCustomer(id: ID!, name: String @rules(apply: ["unique:customers"]), phone_number: String, registration_date: String, address: String, score: String): Customer! @update
+    deleteCustomer(id: ID!): Customer @delete
+    upsertCustomer(
+       id: ID!,
+       name: String,
+       phone_number: String, 
+       registration_date: String, 
+       address: String,
+       score: Int
+    ): Customer! @upsert
+
+    updateCustomerScore(id: ID!, score: Int): Int
+}
+
+type Customer {
+    id: ID!,
+    name: String,
+    phone_number: String, 
+    registration_date: String, 
+    address: String, score: String
+    purchases: [Purchase]! @hasMany,
+    created_at: String!,
+    updated_at: String
+}

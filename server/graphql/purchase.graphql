@@ -1,0 +1,33 @@
+
+extend type Query {
+    purchases: [Purchase!]! @paginate
+    purchase(id: ID @eq): Purchase @find
+    countPurchases: Int!
+}
+
+type Mutation {
+    createPurchase(
+        customer_id: Int!
+        amount: Float!
+        item_name: String!
+    ): Purchase! @create
+
+    updatePurchase(id: ID!, customer_id: Int, item_name: String!, amount: Float): Purchase! @update
+    deletePurchase(id: ID!): Purchase @delete
+    upsertPurchase(
+        id: ID!
+        customer_id: Int!
+        item_name: String!
+        amount: Float!
+    ): Purchase! @upsert
+}
+
+type Purchase {
+    id: ID
+    customer_id: Int!
+    item_name: String!
+    amount: Float
+    customer: Customer! @belongsTo
+    created_at: String,
+    updated_at: String
+}
