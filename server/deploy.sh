@@ -9,14 +9,15 @@ echo "Waiting for mysql container to be up for 30 seconds..."
 sleep 30
 echo "mysql container is up and running."
 
-# Optional: Additional wait to ensure the application is fully started
-# sleep 10
+# Step 3: Install dependencies via composer
+echo "Install dependencies ..."
+docker exec -it dev_app sh -c "composer install"
 
-# Step 3: Run the artisan migrate command inside the dev_app container
+# Step 4: Run the artisan migrate command inside the dev_app container
 echo "Running artisan migrate..."
 docker exec -it dev_app sh -c "php artisan migrate"
 
-# Step 4: Run the script to create a default user.
+# Step 5: Run the script to create a default user.
 echo "Running artisan db:seed..."
 docker exec -it dev_app sh -c "php artisan db:seed"
 

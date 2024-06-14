@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="mb-2" v-if="isLoading">Loading...</div>
-    <CTable v-else>
+    <CTable>
       <CTableHead>
         <CTableRow>
           <CTableHeaderCell scope="col" v-for="(th, index) in thead" :key="index">
@@ -46,7 +46,7 @@
         </CTableRow>
       </CTableBody>
     </CTable>
-    <div class="pagination">
+    <div class="pagination" v-if="!isLoading">
       <CButton color="info" @click="prevPage" :disabled="isFirstPage">Previous</CButton>
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
       <CButton color="info" @click="nextPage" :disabled="isLastPage">Next</CButton>
