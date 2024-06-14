@@ -40,6 +40,11 @@ This guide will help you set up and run the project using either Docker or tradi
 
 Make sure your `.env` file exists in both the server and client directories. Ensure the `API_URL` variable in the client `.env` file is correctly set to the server URL.
 
+### Accessing the Application
+
+- **Client:** [http://localhost:3000](http://localhost:3000)
+- **Server:** [http://localhost:8000](http://localhost:8000)
+
 ## Using Traditional Methods
 
 ### Running the Server
@@ -53,16 +58,17 @@ Make sure your `.env` file exists in both the server and client directories. Ens
     ```sh
     composer install
     ```
-3. Connect to mysql server:
-    ```sh
-    Please make sure you have already installed mysql server and database has been created and then update your .Env file
-    ```
+
+3. Connect to the MySQL server:
+    - Ensure you have already installed the MySQL server and created the database.
+    - Update your `.env` file with the appropriate database credentials.
 
 4. Run database migrations:
     ```sh
     php artisan migrate
     ```
-5. Run seeder:
+
+5. Run database seeders:
     ```sh
     php artisan db:seed
     ```
@@ -90,6 +96,11 @@ Make sure your `.env` file exists in both the server and client directories. Ens
     ```sh
     npm run dev
     ```
+
+### Accessing the Application
+
+- **Client:** [http://localhost:3000](http://localhost:3000)
+- **Server:** [http://localhost:8000](http://localhost:8000)
 
 ## Default User for Login
 
